@@ -1,4 +1,3 @@
-import { AxiosResponse } from "axios";
 import {
   createContext,
   ReactNode,
@@ -55,7 +54,10 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
 
       if (product) {
         if (AlreadyOnCart) {
-          await updateProductAmount({ productId, amount: AlreadyOnCart.amount + 1 });
+          await updateProductAmount({
+            productId,
+            amount: AlreadyOnCart.amount + 1,
+          });
         } else {
           if (stock.amount < 1) {
             toast.error("Quantidade solicitada fora de estoque");
@@ -75,6 +77,8 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
             ]);
           }
         }
+      } else {
+        toast.error("Erro na adição do produto");
       }
     } catch {
       toast.error("Erro na adição do produto");
