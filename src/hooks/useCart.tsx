@@ -79,9 +79,11 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
         }
       } else {
         toast.error("Erro na adição do produto");
+        return;
       }
     } catch {
       toast.error("Erro na adição do produto");
+      return;
     }
   };
 
